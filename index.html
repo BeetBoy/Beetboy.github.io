@@ -41,5 +41,68 @@
     <p>Share your avatar on social media</p>
     <ul><li>Post your avatar on Facebook or Twitter to show off to friends and family. 
         You can also share it on Instagram by using the hashtag #myavatar. Earn badges for every time you post an avatar!</li></ul>
-  </body>
+  <p class="warning">
+      If you are a Ready Player Me partner, don't forget to replace 'demo' in the iframe source url with your partner
+      subdomain.
+    </p>
+
+    <input type="button" value="Open Ready Player Me" onClick="displayIframe()" />
+    <p id="avatarUrl">Avatar URL:</p>
+
+    <iframe id="frame" class="frame" allow="camera *; microphone *"></iframe>
+
+    <script>
+      const subdomain = 'demo'; // Replace with your custom subdomain
+      const frame = document.getElementById('frame');
+
+      frame.src = `https://${subdomain}.readyplayer.me/avatar?frameApi`;
+
+      window.addEventListener('message', subscribe);
+      document.addEventListener('message', subscribe);
+
+      function subscribe(event) {
+        const json = parse(event);
+
+        if (json?.source !== 'readyplayerme') {
+          return;
+        }
+
+        // Susbribe to all events sent from Ready Player Me once frame is ready
+        if (json.eventName === 'v1.frame.ready') {
+          frame.contentWindow.postMessage(
+            JSON.stringify({
+              target: 'readyplayerme',
+              type: 'subscribe',
+              eventName: 'v1.**'
+            }),
+            '*'
+          );
+        }
+
+        // Get avatar GLB URL
+        if (json.eventName === 'v1.avatar.exported') {
+          console.log(`Avatar URL: ${json.data.url}`);
+          document.getElementById('avatarUrl').innerHTML = `Avatar URL: ${json.data.url}`;
+          document.getElementById('frame').hidden = true;
+        }
+
+        // Get user id
+        if (json.eventName === 'v1.user.set') {
+          console.log(`User with id ${json.data.id} set: ${JSON.stringify(json)}`);
+        }
+      }
+
+      function parse(event) {
+        try {
+          return JSON.parse(event.data);
+        } catch (error) {
+          return null;
+        }
+      }
+
+      function displayIframe() {
+        document.getElementById('frame').hidden = false;
+      }
+      </body>
+    </script>
 </html>
