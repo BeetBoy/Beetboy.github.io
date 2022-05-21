@@ -26,6 +26,8 @@ body {
     border-radius: 5px;
     color: white;
     text-align: center;
+    font-size: 50px;
+    font-family: 'odibee sans', cursive;
   }
 
   div, iframe {
