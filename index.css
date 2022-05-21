@@ -1,16 +1,14 @@
 body {
     background-color: rgb(0, 0, 0);
   }
-  h1 {
-    color: rgb(255, 255, 255);
-    font-size: 40px;
-    text-align: center;
-  }
+ 
   p {
     color: rgb(253, 253, 253);
-    font-size: 20px;
+    font-size: 100px;
     text-align: center;
+    font-family: 'Odibee Sans', cursive;
   }
+
   ul {
     list-style-type: none;
     margin: 0;
@@ -19,7 +17,9 @@ body {
     background-color: rgb(0, 0, 0);
     color: whitesmoke;
     text-align: center;
+    font-size: 30px;
   }
+
  .warning {
     background-color: #df68a2;
     padding: 3px;
@@ -27,15 +27,50 @@ body {
     color: white;
     text-align: center;
   }
+
   div, iframe {
     width: 1080px;
     height: 1080px;
     margin: 0 auto;
-    background-color: #777;
-    display: flex;
+    background-color: rgb(0, 3, 68);
+    position: center;
 }
 
 iframe {
     display: center;
     border-style:none;
 }
+
+::-webkit-scrollbar {
+    width: 2em;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.789);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 89, 0, 0.789);
+  border-radius: 10px;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 250ms ease-in;
+  animation: fadein 2s;
+}
+
+.fade-out {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+  animation: fadeout 2s;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.
