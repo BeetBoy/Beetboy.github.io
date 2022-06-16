@@ -63,16 +63,11 @@ iframe {
   border-radius: 10px;
 }
 
-.fade-in {
-  opacity: 0;
-  transition: opacity 250ms ease-in;
-  animation: fadein 2s;
-}
-
-.fade-out {
-  opacity: 1;
-  transition: opacity 250ms ease-in;
-  animation: fadeout 2s;
+img
+{
+    max-width: 100%;
+    min-width: 300px;
+    height: auto;
 }
 
 .center {
