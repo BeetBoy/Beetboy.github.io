@@ -3,6 +3,7 @@ body {
   }
  
   p {
+    display:flex;
     color: rgb(253, 253, 253);
     font-size: 100px;
     text-align: center;
@@ -10,6 +11,7 @@ body {
   }
 
   ul {
+    display:flex
     list-style-type: none;
     margin: 0;
     padding: 0;
